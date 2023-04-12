@@ -8,11 +8,12 @@ def execute(circuit, noise_level=0.005):
 
 
 import cirq
+import mitiq
 
 qubit = cirq.LineQubit(1)
 circuit = cirq.Circuit(cirq.X(qubit) for _ in range(100))
 
-expval = execute(circuit)
+expval = mitiq.zne.execute_with_zne(circuit, execute)
 
 print(f"Error: {1 - expval:.3}")
-# Error: 0.244
+# Error: 0.058
