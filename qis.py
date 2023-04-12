@@ -16,13 +16,14 @@ def execute(circuit):
 
 
 import qiskit
+import mitiq
 
 circuit = qiskit.QuantumCircuit(1)
 for _ in range(100):
     circuit.x(0)
 circuit.measure_all()
 
-expval = execute(circuit)
+expval = mitiq.zne.execute_with_zne(circuit, execute)
 
 print(f"Error: {1 - expval:.3}")
-# Error: 0.214
+# Error: 0.0537
